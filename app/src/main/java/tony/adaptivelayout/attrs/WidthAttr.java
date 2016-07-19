@@ -17,7 +17,7 @@ public class WidthAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean defaultBaseWidth() {
+    protected boolean onBaseWidth() {
         return true;
     }
 
@@ -27,9 +27,9 @@ public class WidthAttr extends AutoAttr {
         lp.width = value;
     }
 
-    public static WidthAttr generate(int value, int flag){
+    public static WidthAttr generate(int value, int flag) {
         WidthAttr widthAttr = null;
-        switch (flag){
+        switch (flag) {
             case AutoAttr.BASE_WIDTH:
                 widthAttr = new WidthAttr(value, Attrs.WIDTH, 0);
                 break;

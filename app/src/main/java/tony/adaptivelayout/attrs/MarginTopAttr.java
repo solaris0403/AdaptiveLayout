@@ -17,17 +17,16 @@ public class MarginTopAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean defaultBaseWidth() {
+    protected boolean onBaseWidth() {
         return false;
     }
 
     @Override
     protected void execute(View view, int value) {
-        if (!(view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams)) {
-            return;
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            lp.topMargin = value;
         }
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-        lp.topMargin = value;
     }
 
     public static MarginTopAttr generate(int val, int flag) {

@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 /**
  * Created by tony on 7/18/16.
  */
-public class HeightAttr extends AutoAttr{
+public class HeightAttr extends AutoAttr {
     public HeightAttr(int pxValue, int baseWidth, int baseHeight) {
         super(pxValue, baseWidth, baseHeight);
     }
@@ -17,7 +17,7 @@ public class HeightAttr extends AutoAttr{
     }
 
     @Override
-    protected boolean defaultBaseWidth() {
+    protected boolean onBaseWidth() {
         return false;
     }
 
@@ -27,9 +27,9 @@ public class HeightAttr extends AutoAttr{
         lp.height = value;
     }
 
-    public static HeightAttr generate(int value, int flag){
+    public static HeightAttr generate(int value, int flag) {
         HeightAttr heightAttr = null;
-        switch (flag){
+        switch (flag) {
             case AutoAttr.BASE_WIDTH:
                 heightAttr = new HeightAttr(value, Attrs.HEIGHT, 0);
                 break;

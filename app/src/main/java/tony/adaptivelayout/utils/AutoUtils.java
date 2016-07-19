@@ -77,30 +77,16 @@ public class AutoUtils {
         return false;
     }
 
-    public static float getPercentWidth1px() {
+    /**
+     * 获取百分比之后的宽度 向上取整
+     *
+     * @param width 设计的宽度
+     * @return 目标高度
+     */
+    public static int getPercentWidthSize(int width) {
         int screenWidth = AutoLayoutConfig.getInstance().getScreenWidth();
         int designWidth = AutoLayoutConfig.getInstance().getDesignWidth();
-        return 1.0f * screenWidth / designWidth;
-    }
-
-    public static float getPercentHeight1px() {
-        int screenHeight = AutoLayoutConfig.getInstance().getScreenHeight();
-        int designHeight = AutoLayoutConfig.getInstance().getDesignHeight();
-        return 1.0f * screenHeight / designHeight;
-    }
-
-
-    public static int getPercentWidthSize(int val) {
-        int screenWidth = AutoLayoutConfig.getInstance().getScreenWidth();
-        int designWidth = AutoLayoutConfig.getInstance().getDesignWidth();
-        return (int) (val * 1.0f / designWidth * screenWidth);
-    }
-
-
-    public static int getPercentWidthSizeBigger(int val) {
-        int screenWidth = AutoLayoutConfig.getInstance().getScreenWidth();
-        int designWidth = AutoLayoutConfig.getInstance().getDesignWidth();
-        int res = val * screenWidth;
+        int res = width * screenWidth;
         if (res % designWidth == 0) {
             return res / designWidth;
         } else {
@@ -108,22 +94,20 @@ public class AutoUtils {
         }
     }
 
-    public static int getPercentHeightSizeBigger(int val) {
+    /**
+     * 获取百分比之后的高度 向上取整
+     *
+     * @param height 设计的高度
+     * @return 目标高度
+     */
+    public static int getPercentHeightSize(int height) {
         int screenHeight = AutoLayoutConfig.getInstance().getScreenHeight();
         int designHeight = AutoLayoutConfig.getInstance().getDesignHeight();
-
-        int res = val * screenHeight;
+        int res = height * screenHeight;
         if (res % designHeight == 0) {
             return res / designHeight;
         } else {
             return res / designHeight + 1;
         }
-    }
-
-    public static int getPercentHeightSize(int val) {
-        int screenHeight = AutoLayoutConfig.getInstance().getScreenHeight();
-        int designHeight = AutoLayoutConfig.getInstance().getDesignHeight();
-
-        return (int) (val * 1.0f / designHeight * screenHeight);
     }
 }

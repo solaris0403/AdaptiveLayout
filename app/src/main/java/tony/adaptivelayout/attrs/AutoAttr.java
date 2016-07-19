@@ -5,13 +5,15 @@ import android.view.View;
 import tony.adaptivelayout.utils.AutoUtils;
 
 /**
- * Created by tony on 7/18/16.
+ * 所有属性的父类 针对每一个属性重新计算
  */
 public abstract class AutoAttr {
-    public static final int BASE_WIDTH = 1;
-    public static final int BASE_HEIGHT = 2;
-    public static final int BASE_DEFAULT = 3;
+    //基准
+    public static final byte BASE_WIDTH = 0x01;
+    public static final byte BASE_HEIGHT = 0x02;
+    public static final byte BASE_DEFAULT = 0x03;
 
+    //设置的值 与基准值
     protected int mPxValue;
     protected int mBaseWidth;
     protected int mBaseHeight;
@@ -22,27 +24,25 @@ public abstract class AutoAttr {
         this.mBaseHeight = baseHeight;
     }
 
+    //针对不同的方案 设置属性值
     public void apply(View view) {
         int value;
         if (useDefaultValue()) {
-            value = defaultBaseWidth() ? getPercentWidthSize() : getPercentHeightSize();
+            value = onBaseWidth() ? getPercentWidthSize() : getPercentHeightSize();
         } else if (baseWidth()) {
             value = getPercentWidthSize();
         } else {
             value = getPercentHeightSize();
         }
-        if (value > 0) {
-            value = Math.max(value, 1);
-        }
         execute(view, value);
     }
 
     protected int getPercentWidthSize() {
-        return AutoUtils.getPercentWidthSizeBigger(mPxValue);
+        return AutoUtils.getPercentWidthSize(mPxValue);
     }
 
     protected int getPercentHeightSize() {
-        return AutoUtils.getPercentHeightSizeBigger(mPxValue);
+        return AutoUtils.getPercentHeightSize(mPxValue);
     }
 
     protected boolean baseWidth() {
@@ -58,9 +58,22 @@ public abstract class AutoAttr {
     }
 
 
+    /**
+     * 返回当前属性
+     * @return
+     */
     protected abstract int attrValue();
 
-    protected abstract boolean defaultBaseWidth();
+    /**
+     * 默认以宽为基准
+     * @return
+     */
+    protected abstract boolean onBaseWidth();
 
+    /**
+     * 针对当前view重新设置该属性的值
+     * @param view
+     * @param value
+     */
     protected abstract void execute(View view, int value);
 }

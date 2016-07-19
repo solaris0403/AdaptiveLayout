@@ -34,7 +34,7 @@ public class AutoFrameLayout extends FrameLayout {
 
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams(getContext(), attrs);
+        return new AutoFrameLayout.LayoutParams(getContext(), attrs);
     }
 
     @Override

@@ -93,11 +93,9 @@ public class AutoLayoutHelper {
 
     public AutoLayoutHelper(ViewGroup host) {
         mHost = host;
-
         if (mAutoLayoutConfig == null) {
             initAutoLayoutConfig(host);
         }
-
     }
 
     private void initAutoLayoutConfig(ViewGroup host) {
@@ -108,7 +106,7 @@ public class AutoLayoutHelper {
 
     public void adjustChildren() {
         AutoLayoutConfig.getInstance().checkParams();
-        for (int i = 0, n = mHost.getChildCount(); i < n; i++) {
+        for (int i = 0; i < mHost.getChildCount(); i++) {
             View view = mHost.getChildAt(i);
             ViewGroup.LayoutParams params = view.getLayoutParams();
             if (params instanceof AutoLayoutParams) {
@@ -120,6 +118,12 @@ public class AutoLayoutHelper {
         }
     }
 
+    /**
+     * 获取xml中的属性信息
+     * @param context
+     * @param attrs
+     * @return
+     */
     public static AutoLayoutInfo getAutoLayoutInfo(Context context, AttributeSet attrs) {
         AutoLayoutInfo info = new AutoLayoutInfo();
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoLayout_Layout);
@@ -127,71 +131,69 @@ public class AutoLayoutHelper {
         int baseHeight = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_baseheight, 0);
         a.recycle();
 
+        //获取原有设置的值
         TypedArray array = context.obtainStyledAttributes(attrs, LL);
-        int n = array.getIndexCount();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < array.getIndexCount(); i++) {
             int index = array.getIndex(i);
-//            String val = array.getString(index);
-//            if (!isPxVal(val)) continue;
             if (!DimenUtils.isPxVal(array.peekValue(index))) continue;
-            int pxVal = 0;
+            int pxValue;
             try {
-                pxVal = array.getDimensionPixelOffset(index, 0);
+                pxValue = array.getDimensionPixelOffset(index, 0);
             } catch (Exception ignore)//not dimension
             {
                 continue;
             }
             switch (index) {
                 case INDEX_TEXT_SIZE:
-                    info.addAttr(new TextSizeAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new TextSizeAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING:
-                    info.addAttr(new PaddingAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new PaddingAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_LEFT:
-                    info.addAttr(new PaddingLeftAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new PaddingLeftAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_TOP:
-                    info.addAttr(new PaddingTopAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new PaddingTopAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_RIGHT:
-                    info.addAttr(new PaddingRightAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new PaddingRightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_BOTTOM:
-                    info.addAttr(new PaddingBottomAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new PaddingBottomAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_WIDTH:
-                    info.addAttr(new WidthAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new WidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_HEIGHT:
-                    info.addAttr(new HeightAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new HeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN:
-                    info.addAttr(new MarginAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MarginAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_LEFT:
-                    info.addAttr(new MarginLeftAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MarginLeftAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_TOP:
-                    info.addAttr(new MarginTopAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MarginTopAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_RIGHT:
-                    info.addAttr(new MarginRightAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MarginRightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_BOTTOM:
-                    info.addAttr(new MarginBottomAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MarginBottomAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MAX_WIDTH:
-                    info.addAttr(new MaxWidthAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MaxWidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MAX_HEIGHT:
-                    info.addAttr(new MaxHeightAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MaxHeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MIN_WIDTH:
-                    info.addAttr(new MinWidthAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MinWidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MIN_HEIGHT:
-                    info.addAttr(new MinHeightAttr(pxVal, baseWidth, baseHeight));
+                    info.addAttr(new MinHeightAttr(pxValue, baseWidth, baseHeight));
                     break;
             }
         }

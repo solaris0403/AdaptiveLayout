@@ -32,6 +32,16 @@ public class AutoRelativeLayout extends RelativeLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    /**
+     * 调整子view的layoutParams
+     * @param attrs
+     * @return
+     */
+    @Override
+    public RelativeLayout.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new AutoRelativeLayout.LayoutParams(getContext(), attrs);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (!isInEditMode()) {
@@ -47,7 +57,6 @@ public class AutoRelativeLayout extends RelativeLayout {
             super(c, attrs);
             mAutoLayoutInfo = AutoLayoutHelper.getAutoLayoutInfo(c, attrs);
         }
-
         public LayoutParams(int w, int h) {
             super(w, h);
         }
@@ -64,7 +73,6 @@ public class AutoRelativeLayout extends RelativeLayout {
         public LayoutParams(RelativeLayout.LayoutParams source) {
             super(source);
         }
-
         @Override
         public AutoLayoutInfo getAutoLayoutInfo() {
             return mAutoLayoutInfo;
