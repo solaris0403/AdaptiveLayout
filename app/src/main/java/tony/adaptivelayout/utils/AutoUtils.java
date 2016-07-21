@@ -1,81 +1,15 @@
 package tony.adaptivelayout.utils;
 
-import android.view.View;
+import android.util.Log;
 
-import tony.adaptivelayout.R;
-import tony.adaptivelayout.attrs.Attrs;
-import tony.adaptivelayout.attrs.AutoAttr;
 import tony.adaptivelayout.config.AutoLayoutConfig;
-import tony.adaptivelayout.widget.AutoLayoutInfo;
 
 
 /**
  * Created by zhy on 15/12/4.
  */
 public class AutoUtils {
-
-    /**
-     * 会直接将view的LayoutParams上设置的width，height直接进行百分比处理
-     *
-     * @param view
-     */
-    public static void auto(View view) {
-        autoSize(view);
-        autoPadding(view);
-        autoMargin(view);
-        autoTextSize(view, AutoAttr.BASE_DEFAULT);
-    }
-
-    /**
-     * @param view
-     * @param attrs #Attrs.WIDTH|Attrs.HEIGHT
-     * @param base  AutoAttr.BASE_WIDTH|AutoAttr.BASE_HEIGHT|AutoAttr.BASE_DEFAULT
-     */
-    public static void auto(View view, int attrs, int base) {
-        AutoLayoutInfo autoLayoutInfo = AutoLayoutInfo.getAttrFromView(view, attrs, base);
-        if (autoLayoutInfo != null) {
-            autoLayoutInfo.fillAttrs(view);
-        }
-    }
-
-    public static void autoTextSize(View view) {
-        auto(view, Attrs.TEXT_SIZE, AutoAttr.BASE_DEFAULT);
-    }
-
-    public static void autoTextSize(View view, int base) {
-        auto(view, Attrs.TEXT_SIZE, base);
-    }
-
-    public static void autoMargin(View view) {
-        auto(view, Attrs.MARGIN, AutoAttr.BASE_DEFAULT);
-    }
-
-    public static void autoMargin(View view, int base) {
-        auto(view, Attrs.MARGIN, base);
-    }
-
-    public static void autoPadding(View view) {
-        auto(view, Attrs.PADDING, AutoAttr.BASE_DEFAULT);
-    }
-
-    public static void autoPadding(View view, int base) {
-        auto(view, Attrs.PADDING, base);
-    }
-
-    public static void autoSize(View view) {
-        auto(view, Attrs.WIDTH | Attrs.HEIGHT, AutoAttr.BASE_DEFAULT);
-    }
-
-    public static void autoSize(View view, int base) {
-        auto(view, Attrs.WIDTH | Attrs.HEIGHT, base);
-    }
-
-    public static boolean autoed(View view) {
-        Object tag = view.getTag(R.id.id_tag_autolayout_size);
-        if (tag != null) return true;
-        view.setTag(R.id.id_tag_autolayout_size, "Just Identify");
-        return false;
-    }
+    private static final String TAG = "AutoUtils";
 
     /**
      * 获取百分比之后的宽度 向上取整
@@ -87,11 +21,14 @@ public class AutoUtils {
         int screenWidth = AutoLayoutConfig.getInstance().getScreenWidth();
         int designWidth = AutoLayoutConfig.getInstance().getDesignWidth();
         int res = width * screenWidth;
+        int result;
         if (res % designWidth == 0) {
-            return res / designWidth;
+            result = res / designWidth;
         } else {
-            return res / designWidth + 1;
+            result = res / designWidth + 1;
         }
+        Log.i(TAG, "PxWidth:" + width + ",PercentWidth:" + result);
+        return result;
     }
 
     /**
@@ -104,10 +41,13 @@ public class AutoUtils {
         int screenHeight = AutoLayoutConfig.getInstance().getScreenHeight();
         int designHeight = AutoLayoutConfig.getInstance().getDesignHeight();
         int res = height * screenHeight;
+        int result;
         if (res % designHeight == 0) {
-            return res / designHeight;
+            result = res / designHeight;
         } else {
-            return res / designHeight + 1;
+            result = res / designHeight + 1;
         }
+        Log.i(TAG, "PxHeight:" + height + ",PercentHeight:" + result);
+        return result;
     }
 }

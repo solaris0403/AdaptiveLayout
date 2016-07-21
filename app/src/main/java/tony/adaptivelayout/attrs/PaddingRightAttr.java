@@ -16,17 +16,13 @@ public class PaddingRightAttr extends AutoAttr{
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return true;
     }
 
     @Override
     protected void execute(View view, int value) {
-        int l = view.getPaddingLeft();
-        int t = view.getPaddingTop();
-        int r = value;
-        int b = view.getPaddingBottom();
-        view.setPadding(l, t, r, b);
+        view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), value, view.getPaddingBottom());
     }
 
     public static PaddingRightAttr generate(int val, int flag)

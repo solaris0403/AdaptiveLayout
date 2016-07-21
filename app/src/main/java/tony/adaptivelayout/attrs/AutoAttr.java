@@ -28,7 +28,7 @@ public abstract class AutoAttr {
     public void apply(View view) {
         int value;
         if (useDefaultValue()) {
-            value = onBaseWidth() ? getPercentWidthSize() : getPercentHeightSize();
+            value = isBaseWidth() ? getPercentWidthSize() : getPercentHeightSize();
         } else if (baseWidth()) {
             value = getPercentWidthSize();
         } else {
@@ -45,12 +45,14 @@ public abstract class AutoAttr {
         return AutoUtils.getPercentHeightSize(mPxValue);
     }
 
+    //设置的是否已宽为基准
     protected boolean baseWidth() {
         return contains(mBaseWidth, attrValue());
     }
 
+    //宽高都没有设置基准 默认值
     protected boolean useDefaultValue() {
-        return !(contains(mBaseWidth, attrValue())) && !(contains(mBaseHeight, attrValue()));
+        return !contains(mBaseWidth, attrValue()) && !contains(mBaseHeight, attrValue());
     }
 
     protected boolean contains(int baseValue, int flag) {
@@ -60,18 +62,21 @@ public abstract class AutoAttr {
 
     /**
      * 返回当前属性
+     *
      * @return
      */
     protected abstract int attrValue();
 
     /**
-     * 默认以宽为基准
+     * 该属性是否以宽为基准
+     *
      * @return
      */
-    protected abstract boolean onBaseWidth();
+    protected abstract boolean isBaseWidth();
 
     /**
      * 针对当前view重新设置该属性的值
+     *
      * @param view
      * @param value
      */

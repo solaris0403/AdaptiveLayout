@@ -23,24 +23,24 @@ public class AutoLayoutConfig {
     private int mDesignWidth;
     private int mDesignHeight;
 
-    private boolean useDeviceSize;
+    //默认没有菜单栏(status+content)
+    private boolean useMenuBarSize = false;
 
-    private AutoLayoutConfig(){
+    private AutoLayoutConfig() {
     }
 
-    public static AutoLayoutConfig getInstance(){
+    public static AutoLayoutConfig getInstance() {
         return mInstance;
     }
 
-    public void checkParams(){
-        if (mDesignWidth <= 0 || mDesignHeight <= 0){
+    public void checkParams() {
+        if (mDesignWidth <= 0 || mDesignHeight <= 0) {
             throw new RuntimeException("you must set " + KEY_DESIGN_WIDTH + " and " + KEY_DESIGN_HEIGHT + "  in your manifest file.");
         }
     }
 
-    //使用设备的全尺寸来参考
-    public AutoLayoutConfig useDeviceSize(){
-        useDeviceSize = true;
+    public AutoLayoutConfig useMenuBarSize() {
+        useMenuBarSize = true;
         return this;
     }
 
@@ -60,16 +60,16 @@ public class AutoLayoutConfig {
         return mDesignHeight;
     }
 
-    public void init(Context context){
+    public void init(Context context) {
         getMetaData(context);
-        int[] screenSize = ScreenUtils.getScreenSize(context, useDeviceSize);
+        int[] screenSize = ScreenUtils.getScreenSize(context, useMenuBarSize);
         mScreenWidth = screenSize[0];
         mScreenHeight = screenSize[1];
-        Log.i(TAG, "mScreenWidth:"+mScreenWidth+",mScreenHeight:"+mScreenHeight);
+        Log.i(TAG, "mScreenWidth:" + mScreenWidth + ",mScreenHeight:" + mScreenHeight);
     }
 
     //获取设置的设计尺寸 通常为int值 如果有人设置为float 可以去削他
-    private void getMetaData(Context context){
+    private void getMetaData(Context context) {
         PackageManager packageManager = context.getPackageManager();
         ApplicationInfo applicationInfo;
         try {
@@ -82,6 +82,6 @@ public class AutoLayoutConfig {
             e.printStackTrace();
             throw new RuntimeException("you must set " + KEY_DESIGN_WIDTH + " and " + KEY_DESIGN_HEIGHT + "  in your manifest file.", e);
         }
-        Log.i(TAG, "mDesignWidth:"+mDesignWidth+",mDesignHeight:"+mDesignHeight);
+        Log.i(TAG, "mDesignWidth:" + mDesignWidth + ",mDesignHeight:" + mDesignHeight);
     }
 }

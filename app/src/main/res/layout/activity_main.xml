@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tony.adaptivelayout.widget.AutoRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,5 +12,7 @@
         android:layout_width="500px"
         android:layout_height="500px"
         android:background="@android:color/holo_red_dark"
-        android:text="Hello World!"/>
+        android:text="Hello World!"
+        app:layout_auto_basewidth="height"
+        app:layout_auto_invalidate="height"/>
 </tony.adaptivelayout.widget.AutoRelativeLayout>

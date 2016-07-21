@@ -18,17 +18,16 @@ public class TextSizeAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return false;
     }
 
     @Override
     protected void execute(View view, int value) {
-        if (!(view instanceof TextView)) {
-            return;
+        if (view instanceof TextView) {
+            ((TextView) view).setIncludeFontPadding(false);
+            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, value);
         }
-        ((TextView) view).setIncludeFontPadding(false);
-        ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, value);
     }
 
     public static TextSizeAttr generate(int val, int flag) {

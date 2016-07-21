@@ -19,7 +19,7 @@ public class MinWidthAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return true;
     }
 

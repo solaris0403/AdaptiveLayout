@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import tony.adaptivelayout.utils.AutoLayoutHelper;
+import tony.adaptivelayout.utils.AutoLayoutInfo;
 
 /**
  * Created by tony on 7/18/16.
@@ -34,6 +35,7 @@ public class AutoRelativeLayout extends RelativeLayout {
 
     /**
      * 调整子view的layoutParams
+     *
      * @param attrs
      * @return
      */
@@ -55,8 +57,10 @@ public class AutoRelativeLayout extends RelativeLayout {
 
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
+            //针对每一个子元素获取属性信息
             mAutoLayoutInfo = AutoLayoutHelper.getAutoLayoutInfo(c, attrs);
         }
+
         public LayoutParams(int w, int h) {
             super(w, h);
         }
@@ -73,6 +77,7 @@ public class AutoRelativeLayout extends RelativeLayout {
         public LayoutParams(RelativeLayout.LayoutParams source) {
             super(source);
         }
+
         @Override
         public AutoLayoutInfo getAutoLayoutInfo() {
             return mAutoLayoutInfo;

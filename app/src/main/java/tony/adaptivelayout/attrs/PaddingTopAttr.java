@@ -5,7 +5,7 @@ import android.view.View;
 /**
  * Created by tony on 7/18/16.
  */
-public class PaddingTopAttr extends AutoAttr{
+public class PaddingTopAttr extends AutoAttr {
     public PaddingTopAttr(int pxValue, int baseWidth, int baseHeight) {
         super(pxValue, baseWidth, baseHeight);
     }
@@ -16,24 +16,18 @@ public class PaddingTopAttr extends AutoAttr{
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return false;
     }
 
     @Override
     protected void execute(View view, int value) {
-        int l = view.getPaddingLeft();
-        int t = value;
-        int r = view.getPaddingRight();
-        int b = view.getPaddingBottom();
-        view.setPadding(l, t, r, b);
+        view.setPadding(view.getPaddingLeft(), value, view.getPaddingRight(), view.getPaddingBottom());
     }
 
-    public static PaddingTopAttr generate(int val, int flag)
-    {
+    public static PaddingTopAttr generate(int val, int flag) {
         PaddingTopAttr paddingTopAttr = null;
-        switch (flag)
-        {
+        switch (flag) {
             case AutoAttr.BASE_WIDTH:
                 paddingTopAttr = new PaddingTopAttr(val, Attrs.PADDING_TOP, 0);
                 break;

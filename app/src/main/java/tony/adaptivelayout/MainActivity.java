@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private TextView mTextView;
+    private TextView mTextView, mTextView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         mTextView.post(new Runnable() {
             @Override
             public void run() {
-                Log.i(TAG, "height:" + mTextView.getHeight() + ",width:" + mTextView.getHeight());
+                Log.i(TAG+"1", "width:" + mTextView.getWidth() + ",height:" + mTextView.getHeight());
             }
         });
     }

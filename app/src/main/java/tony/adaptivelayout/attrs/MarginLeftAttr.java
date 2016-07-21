@@ -17,22 +17,21 @@ public class MarginLeftAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return true;
     }
 
     @Override
     protected void execute(View view, int value) {
-        if (!(view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams)) {
-            return;
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            lp.leftMargin = value;
         }
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-        lp.leftMargin = value;
     }
 
-    public static MarginLeftAttr generate(int val, int flag) {
+    public static MarginLeftAttr generate(int val, int base) {
         MarginLeftAttr marginLeftAttr = null;
-        switch (flag) {
+        switch (base) {
             case AutoAttr.BASE_WIDTH:
                 marginLeftAttr = new MarginLeftAttr(val, Attrs.MARGIN_LEFT, 0);
                 break;

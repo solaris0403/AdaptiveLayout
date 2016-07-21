@@ -1,5 +1,6 @@
 package tony.adaptivelayout.attrs;
 
+import android.content.res.Resources;
 import android.view.View;
 
 import java.lang.reflect.Method;
@@ -18,7 +19,7 @@ public class MaxHeightAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return false;
     }
 
@@ -27,7 +28,8 @@ public class MaxHeightAttr extends AutoAttr {
         try {
             Method setMaxWidthMethod = view.getClass().getMethod("setMaxHeight", int.class);
             setMaxWidthMethod.invoke(view, value);
-        } catch (Exception ignore) {
+        } catch (Exception exception) {
+            throw new Resources.NotFoundException("not find setMaxHeight method");
         }
     }
 

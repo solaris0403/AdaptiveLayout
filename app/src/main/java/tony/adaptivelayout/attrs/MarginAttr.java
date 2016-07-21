@@ -17,7 +17,7 @@ public class MarginAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return false;
     }
 

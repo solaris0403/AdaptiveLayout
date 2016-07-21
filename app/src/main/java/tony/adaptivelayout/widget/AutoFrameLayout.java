@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import tony.adaptivelayout.utils.AutoLayoutHelper;
+import tony.adaptivelayout.utils.AutoLayoutInfo;
 
 /**
  * Created by tony on 7/18/16.

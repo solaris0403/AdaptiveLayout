@@ -17,7 +17,7 @@ public class MarginTopAttr extends AutoAttr {
     }
 
     @Override
-    protected boolean onBaseWidth() {
+    protected boolean isBaseWidth() {
         return false;
     }
 
@@ -29,9 +29,9 @@ public class MarginTopAttr extends AutoAttr {
         }
     }
 
-    public static MarginTopAttr generate(int val, int flag) {
+    public static MarginTopAttr generate(int val, int base) {
         MarginTopAttr marginTopAttr = null;
-        switch (flag) {
+        switch (base) {
             case AutoAttr.BASE_WIDTH:
                 marginTopAttr = new MarginTopAttr(val, Attrs.MARGIN_TOP, 0);
                 break;
