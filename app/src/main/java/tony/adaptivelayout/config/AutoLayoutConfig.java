@@ -68,7 +68,6 @@ public class AutoLayoutConfig {
         Log.i(TAG, "mScreenWidth:" + mScreenWidth + ",mScreenHeight:" + mScreenHeight);
     }
 
-    //获取设置的设计尺寸 通常为int值 如果有人设置为float 可以去削他
     private void getMetaData(Context context) {
         PackageManager packageManager = context.getPackageManager();
         ApplicationInfo applicationInfo;

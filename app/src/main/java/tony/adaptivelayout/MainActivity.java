@@ -1,23 +1,30 @@
 package tony.adaptivelayout;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import tony.adaptivelayout.config.AutoLayoutConfig;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private TextView mTextView, mTextView2;
+    private TextView mTextView0, mTextView1;
+    private TextView mTextView2, mTextView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTextView = (TextView) findViewById(R.id.text);
-        mTextView.post(new Runnable() {
+        mTextView0 = (TextView) findViewById(R.id.text0);
+        mTextView0.setText("ScreenWidth:"+AutoLayoutConfig.getInstance().getScreenWidth()+"\n"+"ScreenHeight:"+AutoLayoutConfig.getInstance().getScreenHeight());
+        mTextView1 = (TextView) findViewById(R.id.text1);
+        mTextView1.setText("DesignWidth:"+AutoLayoutConfig.getInstance().getDesignWidth()+"\n"+"DesignHeight:"+AutoLayoutConfig.getInstance().getDesignHeight());
+
+        mTextView2 = (TextView) findViewById(R.id.text2);
+        mTextView2.post(new Runnable() {
             @Override
             public void run() {
-                Log.i(TAG+"1", "width:" + mTextView.getWidth() + ",height:" + mTextView.getHeight());
+                mTextView2.setText("width:"+mTextView2.getWidth()+",height:"+mTextView2.getHeight());
             }
         });
     }

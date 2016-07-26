@@ -73,7 +73,7 @@ PercentRelativeLayout:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
+<tony.adaptivelayout.widget.percent.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -87,7 +87,7 @@ PercentRelativeLayout:
         android:text="Hello World!"
         app:layout_heightPercent="80%"
         app:layout_widthPercent="80%"/>
-</android.support.percent.PercentRelativeLayout>
+</tony.adaptivelayout.widget.percent.PercentRelativeLayout>
 ```
 
 但是在使用过程中，觉得存在一些场景无法得到满足，当使用图片时，无法设置宽高的比例，很难使用百分比定义一个正方形的控件，一个控件的margin四个方向值一致。

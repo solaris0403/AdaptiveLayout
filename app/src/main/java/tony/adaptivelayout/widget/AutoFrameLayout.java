@@ -9,11 +9,12 @@ import android.widget.FrameLayout;
 
 import tony.adaptivelayout.utils.AutoLayoutHelper;
 import tony.adaptivelayout.utils.AutoLayoutInfo;
+import tony.adaptivelayout.widget.percent.PercentFrameLayout;
 
 /**
  * Created by tony on 7/18/16.
  */
-public class AutoFrameLayout extends FrameLayout {
+public class AutoFrameLayout extends PercentFrameLayout {
     private final AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
 
     public AutoFrameLayout(Context context) {
@@ -28,7 +29,6 @@ public class AutoFrameLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public AutoFrameLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -46,7 +46,7 @@ public class AutoFrameLayout extends FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    private static class LayoutParams extends FrameLayout.LayoutParams implements AutoLayoutHelper.AutoLayoutParams {
+    private static class LayoutParams extends PercentFrameLayout.LayoutParams implements AutoLayoutHelper.AutoLayoutParams {
         private AutoLayoutInfo mAutoLayoutInfo;
 
         public LayoutParams(Context c, AttributeSet attrs) {

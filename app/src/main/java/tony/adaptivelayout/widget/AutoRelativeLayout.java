@@ -9,11 +9,12 @@ import android.widget.RelativeLayout;
 
 import tony.adaptivelayout.utils.AutoLayoutHelper;
 import tony.adaptivelayout.utils.AutoLayoutInfo;
+import tony.adaptivelayout.widget.percent.PercentRelativeLayout;
 
 /**
  * Created by tony on 7/18/16.
  */
-public class AutoRelativeLayout extends RelativeLayout {
+public class AutoRelativeLayout extends PercentRelativeLayout {
     private final AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
 
     public AutoRelativeLayout(Context context) {
@@ -40,7 +41,7 @@ public class AutoRelativeLayout extends RelativeLayout {
      * @return
      */
     @Override
-    public RelativeLayout.LayoutParams generateLayoutParams(AttributeSet attrs) {
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new AutoRelativeLayout.LayoutParams(getContext(), attrs);
     }
 
@@ -52,7 +53,7 @@ public class AutoRelativeLayout extends RelativeLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    public static class LayoutParams extends RelativeLayout.LayoutParams implements AutoLayoutHelper.AutoLayoutParams {
+    public static class LayoutParams extends PercentRelativeLayout.LayoutParams implements AutoLayoutHelper.AutoLayoutParams {
         private AutoLayoutInfo mAutoLayoutInfo;
 
         public LayoutParams(Context c, AttributeSet attrs) {
