@@ -21,10 +21,10 @@
 
     <TextView
         android:id="@+id/text2"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        app:layout_widthPercent="50%"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        app:layout_auto_original="all"
+        android:background="@android:color/holo_red_dark"
         android:gravity="center"
-        app:layout_aspectRatio="200%"
-        android:background="@android:color/holo_red_dark"/>
+        app:layout_auto_basewidth="height"/>
 </tony.adaptivelayout.widget.AutoLinearLayout>

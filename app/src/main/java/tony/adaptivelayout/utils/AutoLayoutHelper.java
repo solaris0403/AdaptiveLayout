@@ -128,22 +128,12 @@ public class AutoLayoutHelper {
     public static AutoLayoutInfo getAutoLayoutInfo(Context context, AttributeSet attrs) {
         AutoLayoutInfo info = new AutoLayoutInfo();
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoLayout);
-        int baseWidth = a.getInt(R.styleable.AutoLayout_layout_auto_basewidth, 0);
-        int baseHeight = a.getInt(R.styleable.AutoLayout_layout_auto_baseheight, 0);
-        boolean autoEnable = a.getBoolean(R.styleable.AutoLayout_layout_auto_enable, true);
-        int invalidate = a.getInt(R.styleable.AutoLayout_layout_auto_invalidate, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoLayout_Layout);
+        int baseWidth = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_basewidth, 0);
+        int baseHeight = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_baseheight, 0);
+        int original = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_original, 0);
         a.recycle();
 
-        if (!autoEnable) {
-            return info;
-        }
-
-        /**
-         * 当enable、invalidate、base有同时出现的情况以下列优先级为准
-         * 全局禁用(enable=false)>局部失效(invalidate)>基准设置(base)
-         * 如果basewidth和invalidate(width)并存,则basewidth失效
-         */
         TypedArray array = context.obtainStyledAttributes(attrs, LL);
         for (int i = 0; i < array.getIndexCount(); i++) {
             int index = array.getIndex(i);
@@ -157,71 +147,71 @@ public class AutoLayoutHelper {
             }
             switch (index) {
                 case INDEX_WIDTH:
-                    if (contains(invalidate, Attrs.WIDTH)) break;
+                    if (contains(original, Attrs.WIDTH)) break;
                     info.addAttr(new WidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_HEIGHT:
-                    if (contains(invalidate, Attrs.HEIGHT)) break;
+                    if (contains(original, Attrs.HEIGHT)) break;
                     info.addAttr(new HeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN:
-                    if (contains(invalidate, Attrs.MARGIN)) break;
+                    if (contains(original, Attrs.MARGIN)) break;
                     info.addAttr(new MarginAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_LEFT:
-                    if (contains(invalidate, Attrs.MARGIN_LEFT)) break;
+                    if (contains(original, Attrs.MARGIN_LEFT)) break;
                     info.addAttr(new MarginLeftAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_TOP:
-                    if (contains(invalidate, Attrs.MARGIN_TOP)) break;
+                    if (contains(original, Attrs.MARGIN_TOP)) break;
                     info.addAttr(new MarginTopAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_RIGHT:
-                    if (contains(invalidate, Attrs.MARGIN_RIGHT)) break;
+                    if (contains(original, Attrs.MARGIN_RIGHT)) break;
                     info.addAttr(new MarginRightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_BOTTOM:
-                    if (contains(invalidate, Attrs.MARGIN_BOTTOM)) break;
+                    if (contains(original, Attrs.MARGIN_BOTTOM)) break;
                     info.addAttr(new MarginBottomAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING:
-                    if (contains(invalidate, Attrs.PADDING)) break;
+                    if (contains(original, Attrs.PADDING)) break;
                     info.addAttr(new PaddingAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_LEFT:
-                    if (contains(invalidate, Attrs.PADDING_LEFT)) break;
+                    if (contains(original, Attrs.PADDING_LEFT)) break;
                     info.addAttr(new PaddingLeftAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_TOP:
-                    if (contains(invalidate, Attrs.PADDING_TOP)) break;
+                    if (contains(original, Attrs.PADDING_TOP)) break;
                     info.addAttr(new PaddingTopAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_RIGHT:
-                    if (contains(invalidate, Attrs.PADDING_RIGHT)) break;
+                    if (contains(original, Attrs.PADDING_RIGHT)) break;
                     info.addAttr(new PaddingRightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_BOTTOM:
-                    if (contains(invalidate, Attrs.PADDING_BOTTOM)) break;
+                    if (contains(original, Attrs.PADDING_BOTTOM)) break;
                     info.addAttr(new PaddingBottomAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MIN_WIDTH:
-                    if (contains(invalidate, Attrs.MIN_WIDTH)) break;
+                    if (contains(original, Attrs.MIN_WIDTH)) break;
                     info.addAttr(new MinWidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MAX_WIDTH:
-                    if (contains(invalidate, Attrs.MAX_WIDTH)) break;
+                    if (contains(original, Attrs.MAX_WIDTH)) break;
                     info.addAttr(new MaxWidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MIN_HEIGHT:
-                    if (contains(invalidate, Attrs.MIN_HEIGHT)) break;
+                    if (contains(original, Attrs.MIN_HEIGHT)) break;
                     info.addAttr(new MinHeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MAX_HEIGHT:
-                    if (contains(invalidate, Attrs.MAX_HEIGHT)) break;
+                    if (contains(original, Attrs.MAX_HEIGHT)) break;
                     info.addAttr(new MaxHeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_TEXT_SIZE:
-                    if (contains(invalidate, Attrs.TEXT_SIZE)) break;
+                    if (contains(original, Attrs.TEXT_SIZE)) break;
                     info.addAttr(new TextSizeAttr(pxValue, baseWidth, baseHeight));
                     break;
             }

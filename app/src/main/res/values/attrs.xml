@@ -1,83 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <declare-styleable name="AutoLayout">
+    <declare-styleable name="AutoLayout_Layout">
         <!--不开启自适应的属性-->
-        <attr name="layout_auto_enable" format="boolean"/>
+        <attr name="layout_auto_original">
+            <flag name="width" value="1"/>
+            <flag name="height" value="2"/>
 
-        <!--不开启自适应的属性-->
-        <attr name="layout_auto_invalidate">
-            <flag name="width" value="1"></flag>
-            <flag name="height" value="2"></flag>
+            <flag name="margin" value="4"/>
+            <flag name="marginLeft" value="8"/>
+            <flag name="marginTop" value="16"/>
+            <flag name="marginRight" value="32"/>
+            <flag name="marginBottom" value="64"/>
 
-            <flag name="margin" value="4"></flag>
-            <flag name="marginLeft" value="8"></flag>
-            <flag name="marginTop" value="16"></flag>
-            <flag name="marginRight" value="32"></flag>
-            <flag name="marginBottom" value="64"></flag>
+            <flag name="padding" value="128"/>
+            <flag name="paddingLeft" value="256"/>
+            <flag name="paddingTop" value="512"/>
+            <flag name="paddingRight" value="1024"/>
+            <flag name="paddingBottom" value="2048"/>
 
-            <flag name="padding" value="128"></flag>
-            <flag name="paddingLeft" value="256"></flag>
-            <flag name="paddingTop" value="512"></flag>
-            <flag name="paddingRight" value="1024"></flag>
-            <flag name="paddingBottom" value="2048"></flag>
+            <flag name="minWidth" value="4096"/>
+            <flag name="maxWidth" value="8192"/>
+            <flag name="minHeight" value="16384"/>
+            <flag name="maxHeight" value="32768"/>
 
-            <flag name="minWidth" value="4096"></flag>
-            <flag name="maxWidth" value="8192"></flag>
-            <flag name="minHeight" value="16384"></flag>
-            <flag name="maxHeight" value="32768"></flag>
-
-            <flag name="textSize" value="65536"></flag>
+            <flag name="textSize" value="65536"/>
+            <!--全部失效-->
+            <flag name="all" value="131071"/>
         </attr>
 
         <!--以宽为基准-->
         <attr name="layout_auto_basewidth">
-            <flag name="width" value="1"></flag>
-            <flag name="height" value="2"></flag>
+            <flag name="width" value="1"/>
+            <flag name="height" value="2"/>
 
-            <flag name="margin" value="4"></flag>
-            <flag name="marginLeft" value="8"></flag>
-            <flag name="marginTop" value="16"></flag>
-            <flag name="marginRight" value="32"></flag>
-            <flag name="marginBottom" value="64"></flag>
+            <flag name="margin" value="4"/>
+            <flag name="marginLeft" value="8"/>
+            <flag name="marginTop" value="16"/>
+            <flag name="marginRight" value="32"/>
+            <flag name="marginBottom" value="64"/>
 
-            <flag name="padding" value="128"></flag>
-            <flag name="paddingLeft" value="256"></flag>
-            <flag name="paddingTop" value="512"></flag>
-            <flag name="paddingRight" value="1024"></flag>
-            <flag name="paddingBottom" value="2048"></flag>
+            <flag name="padding" value="128"/>
+            <flag name="paddingLeft" value="256"/>
+            <flag name="paddingTop" value="512"/>
+            <flag name="paddingRight" value="1024"/>
+            <flag name="paddingBottom" value="2048"/>
 
-            <flag name="minWidth" value="4096"></flag>
-            <flag name="maxWidth" value="8192"></flag>
-            <flag name="minHeight" value="16384"></flag>
-            <flag name="maxHeight" value="32768"></flag>
+            <flag name="minWidth" value="4096"/>
+            <flag name="maxWidth" value="8192"/>
+            <flag name="minHeight" value="16384"/>
+            <flag name="maxHeight" value="32768"/>
 
-            <flag name="textSize" value="65536"></flag>
+            <flag name="textSize" value="65536"/>
         </attr>
 
         <!--以高为基准-->
         <attr name="layout_auto_baseheight">
-            <flag name="width" value="1"></flag>
-            <flag name="height" value="2"></flag>
+            <flag name="width" value="1"/>
+            <flag name="height" value="2"/>
 
-            <flag name="margin" value="4"></flag>
-            <flag name="marginLeft" value="8"></flag>
-            <flag name="marginTop" value="16"></flag>
-            <flag name="marginRight" value="32"></flag>
-            <flag name="marginBottom" value="64"></flag>
+            <flag name="margin" value="4"/>
+            <flag name="marginLeft" value="8"/>
+            <flag name="marginTop" value="16"/>
+            <flag name="marginRight" value="32"/>
+            <flag name="marginBottom" value="64"/>
 
-            <flag name="padding" value="128"></flag>
-            <flag name="paddingLeft" value="256"></flag>
-            <flag name="paddingTop" value="512"></flag>
-            <flag name="paddingRight" value="1024"></flag>
-            <flag name="paddingBottom" value="2048"></flag>
+            <flag name="padding" value="128"/>
+            <flag name="paddingLeft" value="256"/>
+            <flag name="paddingTop" value="512"/>
+            <flag name="paddingRight" value="1024"/>
+            <flag name="paddingBottom" value="2048"/>
 
-            <flag name="minWidth" value="4096"></flag>
-            <flag name="maxWidth" value="8192"></flag>
-            <flag name="minHeight" value="16384"></flag>
-            <flag name="maxHeight" value="32768"></flag>
+            <flag name="minWidth" value="4096"/>
+            <flag name="maxWidth" value="8192"/>
+            <flag name="minHeight" value="16384"/>
+            <flag name="maxHeight" value="32768"/>
 
-            <flag name="textSize" value="65536"></flag>
+            <flag name="textSize" value="65536"/>
         </attr>
     </declare-styleable>
 
