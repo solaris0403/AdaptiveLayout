@@ -26,6 +26,7 @@ import tony.adaptivelayout.attrs.TextSizeAttr;
 import tony.adaptivelayout.attrs.WidthAttr;
 
 public class AutoLayoutInfo {
+    //添加的属性基本
     private List<AutoAttr> autoAttrs = new ArrayList<>();
 
     public void addAttr(AutoAttr autoAttr) {
@@ -40,6 +41,7 @@ public class AutoLayoutInfo {
     }
 
 
+    //通过代码获取attr
     public static AutoLayoutInfo getAttrFromView(View view, int attrs, int base) {
         ViewGroup.LayoutParams params = view.getLayoutParams();
         if (params == null) return null;
@@ -111,7 +113,6 @@ public class AutoLayoutInfo {
         }
 
         //textsize
-
         if (view instanceof TextView) {
             if ((attrs & Attrs.TEXT_SIZE) != 0) {
                 autoLayoutInfo.addAttr(TextSizeAttr.generate((int) ((TextView) view).getTextSize(), base));

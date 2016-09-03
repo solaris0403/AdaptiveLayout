@@ -43,6 +43,9 @@ import tony.adaptivelayout.attrs.TextSizeAttr;
 import tony.adaptivelayout.attrs.WidthAttr;
 import tony.adaptivelayout.config.AutoLayoutConfig;
 
+/**
+ * 获取xml中view的attr值
+ */
 public class AutoLayoutHelper {
     private final ViewGroup mHost;
 
@@ -66,6 +69,7 @@ public class AutoLayoutHelper {
                     android.R.attr.maxHeight,
                     android.R.attr.textSize
             };
+    //为LL中的index
     private static final int INDEX_WIDTH = 0;
     private static final int INDEX_HEIGHT = 1;
     private static final int INDEX_MARGIN = 2;
@@ -83,7 +87,6 @@ public class AutoLayoutHelper {
     private static final int INDEX_MIN_HEIGHT = 14;
     private static final int INDEX_MAX_HEIGHT = 15;
     private static final int INDEX_TEXT_SIZE = 16;
-
 
     /**
      * move to other place?
@@ -129,11 +132,15 @@ public class AutoLayoutHelper {
         AutoLayoutInfo info = new AutoLayoutInfo();
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoLayout_Layout);
+        //基于宽
         int baseWidth = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_basewidth, 0);
+        //基于高
         int baseHeight = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_baseheight, 0);
+        //不适配
         int original = a.getInt(R.styleable.AutoLayout_Layout_layout_auto_original, 0);
         a.recycle();
 
+        //基本属性
         TypedArray array = context.obtainStyledAttributes(attrs, LL);
         for (int i = 0; i < array.getIndexCount(); i++) {
             int index = array.getIndex(i);
@@ -147,81 +154,77 @@ public class AutoLayoutHelper {
             }
             switch (index) {
                 case INDEX_WIDTH:
-                    if (contains(original, Attrs.WIDTH)) break;
+                    if (AutoUtils.contains(original, Attrs.WIDTH)) break;
                     info.addAttr(new WidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_HEIGHT:
-                    if (contains(original, Attrs.HEIGHT)) break;
+                    if (AutoUtils.contains(original, Attrs.HEIGHT)) break;
                     info.addAttr(new HeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN:
-                    if (contains(original, Attrs.MARGIN)) break;
+                    if (AutoUtils.contains(original, Attrs.MARGIN)) break;
                     info.addAttr(new MarginAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_LEFT:
-                    if (contains(original, Attrs.MARGIN_LEFT)) break;
+                    if (AutoUtils.contains(original, Attrs.MARGIN_LEFT)) break;
                     info.addAttr(new MarginLeftAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_TOP:
-                    if (contains(original, Attrs.MARGIN_TOP)) break;
+                    if (AutoUtils.contains(original, Attrs.MARGIN_TOP)) break;
                     info.addAttr(new MarginTopAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_RIGHT:
-                    if (contains(original, Attrs.MARGIN_RIGHT)) break;
+                    if (AutoUtils.contains(original, Attrs.MARGIN_RIGHT)) break;
                     info.addAttr(new MarginRightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MARGIN_BOTTOM:
-                    if (contains(original, Attrs.MARGIN_BOTTOM)) break;
+                    if (AutoUtils.contains(original, Attrs.MARGIN_BOTTOM)) break;
                     info.addAttr(new MarginBottomAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING:
-                    if (contains(original, Attrs.PADDING)) break;
+                    if (AutoUtils.contains(original, Attrs.PADDING)) break;
                     info.addAttr(new PaddingAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_LEFT:
-                    if (contains(original, Attrs.PADDING_LEFT)) break;
+                    if (AutoUtils.contains(original, Attrs.PADDING_LEFT)) break;
                     info.addAttr(new PaddingLeftAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_TOP:
-                    if (contains(original, Attrs.PADDING_TOP)) break;
+                    if (AutoUtils.contains(original, Attrs.PADDING_TOP)) break;
                     info.addAttr(new PaddingTopAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_RIGHT:
-                    if (contains(original, Attrs.PADDING_RIGHT)) break;
+                    if (AutoUtils.contains(original, Attrs.PADDING_RIGHT)) break;
                     info.addAttr(new PaddingRightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_PADDING_BOTTOM:
-                    if (contains(original, Attrs.PADDING_BOTTOM)) break;
+                    if (AutoUtils.contains(original, Attrs.PADDING_BOTTOM)) break;
                     info.addAttr(new PaddingBottomAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MIN_WIDTH:
-                    if (contains(original, Attrs.MIN_WIDTH)) break;
+                    if (AutoUtils.contains(original, Attrs.MIN_WIDTH)) break;
                     info.addAttr(new MinWidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MAX_WIDTH:
-                    if (contains(original, Attrs.MAX_WIDTH)) break;
+                    if (AutoUtils.contains(original, Attrs.MAX_WIDTH)) break;
                     info.addAttr(new MaxWidthAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MIN_HEIGHT:
-                    if (contains(original, Attrs.MIN_HEIGHT)) break;
+                    if (AutoUtils.contains(original, Attrs.MIN_HEIGHT)) break;
                     info.addAttr(new MinHeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_MAX_HEIGHT:
-                    if (contains(original, Attrs.MAX_HEIGHT)) break;
+                    if (AutoUtils.contains(original, Attrs.MAX_HEIGHT)) break;
                     info.addAttr(new MaxHeightAttr(pxValue, baseWidth, baseHeight));
                     break;
                 case INDEX_TEXT_SIZE:
-                    if (contains(original, Attrs.TEXT_SIZE)) break;
+                    if (AutoUtils.contains(original, Attrs.TEXT_SIZE)) break;
                     info.addAttr(new TextSizeAttr(pxValue, baseWidth, baseHeight));
                     break;
             }
         }
         array.recycle();
         return info;
-    }
-
-    private static boolean contains(int value, int attr) {
-        return (value & attr) != 0;
     }
 
     public interface AutoLayoutParams {

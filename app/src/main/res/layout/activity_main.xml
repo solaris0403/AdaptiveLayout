@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tony.adaptivelayout.widget.AutoLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<tony.adaptivelayout.widget.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,20 +10,36 @@
     <TextView
         android:id="@+id/text0"
         android:layout_width="match_parent"
-        android:layout_height="80dp"/>
+        android:layout_height="80dp" />
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        android:layout_height="40dp" />
 
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="200px"
         android:layout_height="200px"
-        app:layout_auto_original="all"
         android:background="@android:color/holo_red_dark"
         android:gravity="center"
-        app:layout_auto_basewidth="height"/>
+        app:layout_auto_basewidth="height" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@android:color/holo_red_dark"
+        android:gravity="center"
+        app:layout_auto_original="all" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@android:color/holo_red_dark"
+        android:gravity="center"
+        app:layout_auto_basewidth="height"
+        app:layout_auto_original="all" />
 </tony.adaptivelayout.widget.AutoLinearLayout>

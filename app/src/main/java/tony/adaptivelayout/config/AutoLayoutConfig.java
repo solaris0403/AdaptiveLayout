@@ -8,7 +8,7 @@ import android.util.Log;
 import tony.adaptivelayout.utils.ScreenUtils;
 
 /**
- * Created by tony on 7/18/16.
+ * 主要是获取基准宽高
  */
 public class AutoLayoutConfig {
     private static final String TAG = "AutoLayoutConfig";
@@ -17,11 +17,8 @@ public class AutoLayoutConfig {
     private static final String KEY_DESIGN_WIDTH = "design_width";
     private static final String KEY_DESIGN_HEIGHT = "design_height";
 
-    private int mScreenWidth;
-    private int mScreenHeight;
-
-    private int mDesignWidth;
-    private int mDesignHeight;
+    private int mScreenWidth, mScreenHeight;
+    private int mDesignWidth, mDesignHeight;
 
     //默认没有菜单栏(status+content)
     private boolean useMenuBarSize = false;
@@ -60,6 +57,8 @@ public class AutoLayoutConfig {
         return mDesignHeight;
     }
 
+    // TODO: 9/3/16 需要重新修改策略，获取优先级为代码->xml->AndroidManifest，如果获取到则不再获取之后的值，
+    // 如果都没有获取到，则需要抛出异常/或者使用屏幕真实尺寸来作为基准
     public void init(Context context) {
         getMetaData(context);
         int[] screenSize = ScreenUtils.getScreenSize(context, useMenuBarSize);

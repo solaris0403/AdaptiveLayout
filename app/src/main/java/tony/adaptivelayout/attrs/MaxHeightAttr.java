@@ -1,8 +1,8 @@
 package tony.adaptivelayout.attrs;
 
-import android.content.res.Resources;
 import android.view.View;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -15,7 +15,7 @@ public class MaxHeightAttr extends AutoAttr {
 
     @Override
     protected int attrValue() {
-        return Attrs.MIN_HEIGHT;
+        return Attrs.MAX_HEIGHT;
     }
 
     @Override
@@ -28,16 +28,25 @@ public class MaxHeightAttr extends AutoAttr {
         try {
             Method setMaxWidthMethod = view.getClass().getMethod("setMaxHeight", int.class);
             setMaxWidthMethod.invoke(view, value);
-        } catch (Exception exception) {
-            throw new Resources.NotFoundException("not find setMaxHeight method");
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
     public static int getMaxHeight(View view) {
         try {
-            Method setMaxWidthMethod = view.getClass().getMethod("getMaxHeight");
-            return (int) setMaxWidthMethod.invoke(view);
-        } catch (Exception ignore) {
+            Method getMaxHeightMethod = view.getClass().getMethod("getMaxHeight");
+            return (int) getMaxHeightMethod.invoke(view);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
         return 0;
     }

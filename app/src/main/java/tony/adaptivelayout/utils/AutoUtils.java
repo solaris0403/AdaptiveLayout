@@ -6,11 +6,14 @@ import tony.adaptivelayout.config.AutoLayoutConfig;
 
 
 /**
- * Created by zhy on 15/12/4.
+ * 调整size
  */
 public class AutoUtils {
     private static final String TAG = "AutoUtils";
 
+    public static boolean contains(int value, int attr) {
+        return (value & attr) != 0;
+    }
     /**
      * 获取百分比之后的宽度 向上取整
      *

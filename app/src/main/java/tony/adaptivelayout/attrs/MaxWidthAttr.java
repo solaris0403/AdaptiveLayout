@@ -2,6 +2,7 @@ package tony.adaptivelayout.attrs;
 
 import android.view.View;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -27,15 +28,25 @@ public class MaxWidthAttr extends AutoAttr {
         try {
             Method setMaxWidthMethod = view.getClass().getMethod("setMaxWidth", int.class);
             setMaxWidthMethod.invoke(view, value);
-        } catch (Exception ignore) {
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
     public static int getMaxWidth(View view) {
         try {
-            Method setMaxWidthMethod = view.getClass().getMethod("getMaxWidth");
-            return (int) setMaxWidthMethod.invoke(view);
-        } catch (Exception ignore) {
+            Method getMaxWidthMethod = view.getClass().getMethod("getMaxWidth");
+            return (int) getMaxWidthMethod.invoke(view);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
         return 0;
     }

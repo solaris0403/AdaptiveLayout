@@ -13,16 +13,11 @@ import tony.adaptivelayout.utils.AutoLayoutInfo;
 public class AutoLayout {
     private static final String TAG = "AutoLayout";
 
-    /**
-     * 会直接将view的LayoutParams上设置的width，height直接进行百分比处理
-     *
-     * @param view
-     */
     public static void auto(View view) {
         autoSize(view);
-        autoPadding(view);
         autoMargin(view);
-        autoTextSize(view, AutoAttr.BASE_DEFAULT);
+        autoPadding(view);
+        autoTextSize(view);
     }
 
     /**
@@ -37,12 +32,12 @@ public class AutoLayout {
         }
     }
 
-    public static void autoTextSize(View view) {
-        auto(view, Attrs.TEXT_SIZE, AutoAttr.BASE_DEFAULT);
+    public static void autoSize(View view) {
+        auto(view, Attrs.WIDTH | Attrs.HEIGHT, AutoAttr.BASE_DEFAULT);
     }
 
-    public static void autoTextSize(View view, int base) {
-        auto(view, Attrs.TEXT_SIZE, base);
+    public static void autoSize(View view, int base) {
+        auto(view, Attrs.WIDTH | Attrs.HEIGHT, base);
     }
 
     public static void autoMargin(View view) {
@@ -61,12 +56,12 @@ public class AutoLayout {
         auto(view, Attrs.PADDING, base);
     }
 
-    public static void autoSize(View view) {
-        auto(view, Attrs.WIDTH | Attrs.HEIGHT, AutoAttr.BASE_DEFAULT);
+    public static void autoTextSize(View view) {
+        auto(view, Attrs.TEXT_SIZE, AutoAttr.BASE_DEFAULT);
     }
 
-    public static void autoSize(View view, int base) {
-        auto(view, Attrs.WIDTH | Attrs.HEIGHT, base);
+    public static void autoTextSize(View view, int base) {
+        auto(view, Attrs.TEXT_SIZE, base);
     }
 
     public static boolean autoed(View view) {

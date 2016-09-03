@@ -13,8 +13,9 @@ public abstract class AutoAttr {
     public static final byte BASE_HEIGHT = 0x02;
     public static final byte BASE_DEFAULT = 0x03;
 
-    //设置的值 与基准值
+    //设置的值
     protected int mPxValue;
+    //基准值
     protected int mBaseWidth;
     protected int mBaseHeight;
 
@@ -55,6 +56,9 @@ public abstract class AutoAttr {
         return !contains(mBaseWidth, attrValue()) && !contains(mBaseHeight, attrValue());
     }
 
+    /**
+     * 是否设置基准
+     */
     protected boolean contains(int baseValue, int flag) {
         return (baseValue & flag) != 0;
     }
